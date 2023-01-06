@@ -16,6 +16,8 @@ Farm already has [TP-Link EAP225-Outdoor](https://www.tp-link.com/en/business-ne
 
 By enabling the `web_server` component, controls are exposed and anyone in the farm can control the motor by just tap of the button and by setting `local: true`, no need for internet connection to fetch the `ccs/js` assests.
 
+This ESPhome configuration file is for an `ESP32` microcontroller with the `NodeMCU-32S`/`ESP-WROOM-32U` board. It connects to a WiFi network using the `wifi` component and allows for Over-The-Air (OTA) updates using the ota component. It also enables a web server, a captive portal, and a restart switch. The `switch` component is used to control two output components, `motor_on` and `motor_off`, which are connected to the ESP32's GPIO pins `17` and `18`, respectively. The sensor component is used to report the WiFi signal strength in `dB` and `%`. The `time` component is used to set the timezone for the microcontroller using the Simple Network Time Protocol (SNTP).
+
 ## Logic
 
 - `Motor ON` latches the motor on relay and turns itself of after given period of time.
