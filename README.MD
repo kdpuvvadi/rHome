@@ -4,11 +4,11 @@ esphome device for controlling waterpump in our farm.
 
 ## Backstory
 
-Motor controller is about 100 meters from the farm house. Farm only gets 3 phase power in the night. Power failures in the middle of the night are also pretty common. Checking on motor in the farm middle of the night is tiresum and difficult with snakes and large wild cats are freely roaming.
+The motor controller for the farm is located approximately 100 meters from the farmhouse. The farm only gets three-phase power at night. Power failures during the night are also quite common. It can be challenging to check on the motor in the farm during the night due to the presence of snakes and large wild cats that roam freely, making the task tiresome and difficult.
 
 ## Present Sollution
 
-Added a relay to latch on while pressing `ON` button of the starter. But on power failure or in the event of motor needed to be turned off, someone needs to be at the controller and press `OFF` button.
+A relay has been added to latch on while pressing the 'ON' button of the starter. However, in the event of a power failure or the need to turn off the motor, someone needs to be at the controller to press the 'OFF' button.
 
 ## Sollution
 
