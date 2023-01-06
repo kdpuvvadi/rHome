@@ -1,0 +1,87 @@
+---
+
+esphome:
+  name: rhome
+
+esp32:
+  board: nodemcu-32s
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+  level: DEBUG
+
+ota:
+  password: ""
+
+api:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # captive portal
+  ap:
+    ssid: "rHome"
+    password: ""
+
+captive_portal:
+
+web_server:
+  local: true
+  ota: false
+
+# Restart the device
+switch:
+  - platform: restart
+    name: "Restart"
+  
+  - platform: gpio
+    name: "Motor Auto"
+    icon: tabler:circuit-motor
+    pin: GPIO17
+    id: motor_auto
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_off:
+      - delay: 1000ms
+      - output.turn_on: motor_off
+      - delay: 1000ms
+      - output.turn_off: motor_off
+    on_turn_on:
+      - delay: 1000ms
+      - output.turn_on: motor_on
+      - delay: 1000ms
+      - output.turn_off: motor_on
+
+output:
+  - platform: gpio
+    pin: GPIO19
+    id: motor_on
+    inverted: True
+
+  - platform: gpio
+    pin: GPIO18
+    id: motor_off
+    inverted: True
+
+sensor:
+  # Reports the WiFi signal strength/RSSI in dB
+  - platform: wifi_signal
+    name: "WiFi"
+    id: wifi_signal_db
+    update_interval: 60s
+    entity_category: "diagnostic"
+
+  # Reports the WiFi signal strength in %
+  - platform: copy
+    source_id: wifi_signal_db
+    name: "WiFi Signal"
+    filters:
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    unit_of_measurement: "%"
+    entity_category: "diagnostic"
+
+time:
+  - platform: sntp
+    timezone: Asia/Kolkata
