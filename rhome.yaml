@@ -70,7 +70,7 @@ sensor:
   - platform: wifi_signal
     name: "WiFi"
     id: wifi_signal_db
-    update_interval: 60s
+    update_interval: 30s
     entity_category: "diagnostic"
 
   # Reports the WiFi signal strength in %
@@ -85,3 +85,6 @@ sensor:
 time:
   - platform: sntp
     timezone: Asia/Kolkata
+    servers:
+      - 0.in.pool.ntp.org
+      - 1.in.pool.ntp.org
